@@ -37,9 +37,17 @@ for r in a:
     print("{} -- {}".format(r.xpath('./time/@datetime')[0].encode('utf-8'), 
     r.xpath('./a/text()')[0].encode('utf-8')
     ))
-    print("http://lenta.ru/{}"
+    print("http://lenta.ru{}"
     .format(
     r.xpath('./a/@href')[0].encode('utf-8')))
+    
+    scraperwiki.sqlite.save(
+    unique_keys=[],
+    data={"time": r.xpath('./time/@datetime')[0].encode('utf-8'),
+          "text": r.xpath('./a/text()')[0].encode('utf-8'),
+          "url": "http://lenta.ru{}".format(r.xpath('./a/@href')[0].encode('utf-8'))
+        }
+)
 # .encode('cp866')
 
 
