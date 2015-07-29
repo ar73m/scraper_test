@@ -31,7 +31,7 @@ html = scraperwiki.scrape("http://m.vk.com")
 #
 # # Find something on the page using css selectors
 root = lxml.html.fromstring(html)
-a = root.path('//section/a/@href')
+a = root.xpath('//section/a/@href')
 for r in a:
     print r
 #
