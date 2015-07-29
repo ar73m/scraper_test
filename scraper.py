@@ -27,14 +27,24 @@ import scraperwiki
 import lxml.html
 #
 # # Read in a page
-html = scraperwiki.scrape("http://m.vk.com")
+print("Get HTML")
+html = scraperwiki.scrape("http://lenta.ru/")
 #
 # # Find something on the page using css selectors
 root = lxml.html.fromstring(html)
-a = root.xpath('//section/a/@href')
+a = root.xpath('.//div[@class="items"]//div[@class="item"]')
 for r in a:
-    print r
-#
+    print("{} -- {}".format(r.xpath('./time/@datetime')[0].encode('utf-8'), 
+    r.xpath('./a/text()')[0].encode('utf-8')
+    ))
+    print("http://lenta.ru/{}"
+    .format(
+    r.xpath('./a/@href')[0].encode('utf-8')))
+# .encode('cp866')
+
+
+
+
 # # Write out to the sqlite database using scraperwiki library
 #scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
 #
