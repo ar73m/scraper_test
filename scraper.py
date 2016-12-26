@@ -9,7 +9,7 @@ root = lxml.html.fromstring(html)
 a = root.xpath('.//div[@class="items"]//div[@class="item"]')
 
 for r in a:
-    date = r.xpath('./time/@datetime')[0]
+    date = r.xpath('./a/time/@datetime')[0]
     text = r.xpath('./a/text()')[0]
     url =  r.xpath('./a/@href')[0]
     
